@@ -4,18 +4,22 @@ const ctrlTasks = {};
 
 // Controlador para consultar las tareas
 ctrlTasks.getTasks = async (req, res) => {
-    const tasks = await Tasks.find({ isActive: true });
-
-    return res.render( {tasks});
+        try {
+            const task = await Tasks.find();
+            res.status(200).json(task);
+    
+        } catch(error){
+            res.status(500).json({error: error.message});
+        }
 };
 
 // Controlador para crear una nueva tarea
 ctrlTasks.postTasks = async (req, res) => {
-    const { descripcion } = req.body;
+    const { description } = req.body;
 
     // Instanciar una nueva tarea
     const nuevaTarea = new Tasks({
-        descripcion
+        description
     });
 
     try {
@@ -30,17 +34,16 @@ ctrlTasks.postTasks = async (req, res) => {
 // Controlador para actualizar una tarea
 ctrlTasks.putTasks = async (req, res) => {
     const id = req.params.id;
-    const { descripcion, ...otroDatos } = req.body;
+    const { description, ...otroDatos } = req.body;
 
-    if (!id || !descripcion ) {
+    if (!id || !description ) {
         return res.status(400).json({
             msg: 'No viene id en la petición',
         });
     };
 
     try {
-        const tareaActualizada = await Tasks.findByIdAndUpdate(id, { descripcion })
-
+        const tareaActualizada = await Tasks.findByIdAndUpdate(id, { description })
         return res.json({
             msg: 'Tarea actualizada correctamente',
         });
@@ -57,7 +60,7 @@ ctrlTasks.deleteTasks = async (req, res) => {
     const id = req.params.id;
 
     try {
-        await Tasks.findByIdAndUpdate(id, { isActive: false })
+        await Tasks.findByIdAndDelete(id)
         return res.json('Tarea eliminada correctamente');
     } catch (err) {
         console.log(err.message)

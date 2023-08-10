@@ -2,15 +2,21 @@ const express = require('express')
 const cors = require('cors')
 const morgan = require('morgan')
 const mongodb = require('./database/connection')
+const taskRoutes = require('./routes/taskRoutes');
 
 const PORT = 4000
 const app = express()
-const taskRoutes = require('./routes/taskRoutes');
 
-app.use(taskRoutes);
-app.use(cors())
-app.use(morgan('combined'))
+app.use(cors({
+    origin: 'https://localhost:4000'
+}))
 app.use(express.json())
+app.use(taskRoutes);
+app.use(cors({
+    origin: 'https://localhost:4000'
+}))
+app.use(morgan('combined'))
+
 
 //conexión DB
 mongodb();

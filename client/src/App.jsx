@@ -72,7 +72,7 @@ const Task = () => {
                     <div className="card" key={task.id}>
                         <h3>{task.description}</h3>
                         <p>{task.status ? "Completo" : "Pendiente"}</p>
-                        <button onClick={() => toggleTask(task.id)}>
+                        <button onClick={() => toggleTask(task._id)}>
                             "Cambiar estado"
                         </button>
                     </div>

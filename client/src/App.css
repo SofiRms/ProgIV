@@ -40,3 +40,107 @@
 .read-the-docs {
   color: #888;
 }
+
+/* App.css */
+.App {
+  text-align: center;
+  margin: 20px;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+label {
+  margin-bottom: 5px;
+}
+
+input {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centrar horizontalmente */
+  justify-content: center; /* Centrar verticalmente */
+  height: 30vh; /* Otra opción para centrar verticalmente */
+  margin-bottom: 20px;
+}
+
+
+button {
+  padding: 8px 15px;
+  background-color: #ffffff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #4d0551;
+}
+
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #f7f7f7;
+}
+
+.card p {
+  margin: 5px 0;
+}
+
+.card button {
+  margin-top: 5px;
+}
+.boton{
+  background: #74298b;
+  color: rgb(0, 0, 0);
+  width: 9em;
+  height: 3em;
+  border-radius: 30em;
+  font-size: 15px;
+  font-family: inherit;
+  border:none;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  z-index: 1;
+  box-shadow: 6px 6px 12px #000000;
+}
+.boton::before {
+  content:'';
+  width: 0;
+  height: 3rem;
+  border-radius: 30em;
+  position: absolute;
+  top: 0; 
+  left: 0;
+  background-image: linear-gradient(to right, #e83edd 0%, #fa2ba4 100%);
+  transition: .5s ease;
+  display: block;
+  z-index: -1;
+}
+.boton:hover::before{
+  width: 9em;
+}

@@ -25,10 +25,6 @@ const App = () => {
         setDescription(event.target.value);
     };
 
-    const handleStatusChange = (event) => {
-        setEstado(event.target.value);
-    };
-
     const agregarTask = async (event) => {
         event.preventDefault();
         try {
@@ -92,14 +88,8 @@ const App = () => {
                     Descripción:
                     <input type="text" value={description} onChange={handleDescriptionChange} />
                 </label>
-                <label>
-                    Estado:
-                    <select value={estado} onChange={handleStatusChange}>
-                        <option value="pendiente">Pendiente</option>
-                        <option value="incompleto">Incompleto</option>
-                    </select>
-                </label>
-                <button type="submit">Crear Tarea</button>
+
+                <button type="submit" className='boton'>Crear Tarea</button>
             </form>
 
             <h2>Lista de Tareas</h2>
@@ -109,7 +99,7 @@ const App = () => {
                     <div key={task.id}>
                         <p>{task.description}</p>
                         <p>Estado: {task.estado}</p>
-                        <button onClick={() => toggleTask(task._id, task.estado === 'pendiente' ? 'completo' : 'pendiente')}>
+                        <button  onClick={() => toggleTask(task._id, task.estado === 'pendiente' ? 'completo' : 'pendiente')}>
                             Cambiar Estado
                         </button>
                         <button onClick={() => deleteTask(task._id)}>

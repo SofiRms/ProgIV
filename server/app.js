@@ -8,7 +8,7 @@ const PORT = 4000
 const app = express()
 
 app.use(cors({
-    origin: 'https://localhost:4000'
+    origin: 'http://127.0.0.1:5173'
 }))
 app.use(express.json())
 app.use(taskRoutes);

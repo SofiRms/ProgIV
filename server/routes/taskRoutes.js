@@ -8,7 +8,7 @@ const {
 
 routertask.get('/get', getTasks);
 routertask.delete('/delete/:id', deleteTasks);
-routertask.put('/put', putTasks);
+routertask.put('/put/:id', putTasks);
 routertask.post('/post', postTasks);
 
 module.exports = routertask;

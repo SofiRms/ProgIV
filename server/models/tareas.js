@@ -5,6 +5,10 @@ const taskSchema= new Schema({
         type: String,
         required:true,
         default:true
+    },
+    status:{
+        type: String,
+        required: true
     }
 })
 

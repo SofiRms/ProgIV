@@ -43,10 +43,21 @@ const Task = () => {
         }
     };
 
+    const toggleTask = async (taskId) => {
+        try {
+            await fetch(`http://localhost:4000/put/${taskId}`, {
+                method: 'PUT',
+            });
+            obtenerTask();
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
 
 
     return (
-        <div >
+        <div>
             <h2>Agregar Task</h2>
             <div className="input-container">
                 <input className='input'type="text" value={description} onChange={handleDescriptionChange} placeholder='"estudiar"' />
@@ -60,6 +71,10 @@ const Task = () => {
                 {taskList.map((task) => (
                     <div className="card" key={task.id}>
                         <h3>{task.description}</h3>
+                        <p>{task.status ? "Completo" : "Pendiente"}</p>
+                        <button onClick={() => toggleTask(task.id)}>
+                            "Cambiar estado"
+                        </button>
                     </div>
                 ))}
             </div>

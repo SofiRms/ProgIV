@@ -34,27 +34,44 @@ ctrlTasks.postTasks = async (req, res) => {
 // Controlador para actualizar una tarea
 ctrlTasks.putTasks = async (req, res) => {
     const id = req.params.id;
-    const { description, ...otroDatos } = req.body;
+    const { description, status, ...otrosdatos } = req.body; // Agrega 'status' en el destructuring
 
-    if (!id || !description ) {
+    if (!id || !description || !status) {
         return res.status(400).json({
-            msg: 'No viene id en la petición',
+            msg: 'No se proporcionaron datos para actualizar la tarea',
         });
-    };
+    }
 
     try {
-        const tareaActualizada = await Tasks.findByIdAndUpdate(id, { description })
+        const task = await Tasks.findById(id);
+
+        if (!task) {
+            return res.status(404).json({
+                msg: 'Tarea no encontrada',
+            });
+        }
+
+        if (description !== undefined) {
+            task.description = description;
+        }
+
+        if (status !== undefined) {
+            task.status = status; // Actualiza el estado
+        }
+
+        const updatedTask = await task.save();
+
         return res.json({
             msg: 'Tarea actualizada correctamente',
+            task: updatedTask,
         });
     } catch (error) {
         console.log(error.message);
         return res.status(500).json({
-            msg: 'Error al actualizar la tarea'
-        })
+            msg: 'Error al actualizar la tarea',
+        });
     }
 };
-
 // Controlador para eliminar una tarea (Eliminación lógica)	
 ctrlTasks.deleteTasks = async (req, res) => {
     const id = req.params.id;

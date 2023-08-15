@@ -15,11 +15,12 @@ ctrlTasks.getTasks = async (req, res) => {
 
 // Controlador para crear una nueva tarea
 ctrlTasks.postTasks = async (req, res) => {
-    const { description } = req.body;
+    const { description,estado } = req.body;
 
     // Instanciar una nueva tarea
     const nuevaTarea = new Tasks({
-        description
+        description, 
+        estado
     });
 
     try {
@@ -34,9 +35,9 @@ ctrlTasks.postTasks = async (req, res) => {
 // Controlador para actualizar una tarea
 ctrlTasks.putTasks = async (req, res) => {
     const id = req.params.id;
-    const { description, status, ...otrosdatos } = req.body; // Agrega 'status' en el destructuring
+    const { estado } = req.body; 
 
-    if (!id || !description || !status) {
+    if (!id  || !estado) {
         return res.status(400).json({
             msg: 'No se proporcionaron datos para actualizar la tarea',
         });
@@ -51,12 +52,9 @@ ctrlTasks.putTasks = async (req, res) => {
             });
         }
 
-        if (description !== undefined) {
-            task.description = description;
-        }
 
-        if (status !== undefined) {
-            task.status = status; // Actualiza el estado
+        if (estado!== undefined) {
+            task.estado = estado; // Actualiza el estado
         }
 
         const updatedTask = await task.save();

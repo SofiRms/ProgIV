@@ -6,8 +6,9 @@ const taskSchema= new Schema({
         required:true,
         default:true
     },
-    status:{
+    estado:{
         type: String,
+        default: 'pendiente',
         required: true
     }
 })

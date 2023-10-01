@@ -14,7 +14,7 @@ The ToDo App is designed to help users keep track of their tasks and to-dos in a
 - Add tasks with descriptions and due dates.
 - Mark tasks as completed.
 
-  Install dependencies for the client and server:
+## Install dependencies for the client and server:
 - cd client
 - npm install
 - cd server

@@ -15,21 +15,21 @@ The ToDo App is designed to help users keep track of their tasks and to-dos in a
 - Mark tasks as completed.
 
   Install dependencies for the client and server:
-cd client
-npm install
-cd server
-npm install
+-cd client
+-npm install
+-cd server
+-npm install
 
 Start the Client and Server:
 # Start the React client
-cd client
-npm run dev
+-cd client
+-npm run dev
 
-Replace the MongoDB database connection with your URL <your-mongodb-uri>
 
 # Start the Express backend
-cd server
-npm run dev
+Replace the MongoDB database connection with your URL <your-mongodb-uri>
+-cd server
+-npm run dev
 
 Access application in your web browser
 http://localhost:4000
